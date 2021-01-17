@@ -13,7 +13,7 @@ import java.net.URL;
 public class GetUserInfo {
     public static void main(String[] args)  {
         try {
-            case1();
+//            case1();
 //            case2();
 //            case3();
 //            case4();
@@ -118,13 +118,13 @@ public class GetUserInfo {
     }
     public static void case6() throws IOException {
         System.out.println("Case 6: username or id is null");
-        LoginResp loginResp = LogIn.getInfoFromServer("", "");
+        LoginResp loginResp = LogIn.getInfoFromServer("0968823004", "abcdef");
         String token = loginResp.data.token;
         String user_id = "";
         GetUserInfoResp getUserInfoResp = getInfoFromServer(token, user_id);
         try {
             assert getUserInfoResp.data.username == null || getUserInfoResp.data.id == null : "Fail";
-            System.out.println("This user is not exist");
+            System.out.println("Missing user name");
         }
         catch (AssertionError e) {
             e.printStackTrace();
@@ -134,7 +134,7 @@ public class GetUserInfo {
         System.out.println("Case 7: Be blocked by user");
         LoginResp loginResp = LogIn.getInfoFromServer("0968823005", "abcdef");
         String token = loginResp.data.token;
-        String user_id = "16";
+        String user_id = "115";
         GetUserInfoResp getUserInfoResp = getInfoFromServer(token, user_id);
         System.out.println("You are blocked by this user");
     }
@@ -154,7 +154,7 @@ public class GetUserInfo {
     }
     public static void case9() throws IOException {
         System.out.println("Case 9: Missing some fields");
-        LoginResp loginResp = LogIn.getInfoFromServer("", "");
+        LoginResp loginResp = LogIn.getInfoFromServer("0968823004", "abcdef");
         String token = loginResp.data.token;
         String user_id = "";
         GetUserInfoResp getUserInfoResp = getInfoFromServer(token, user_id);

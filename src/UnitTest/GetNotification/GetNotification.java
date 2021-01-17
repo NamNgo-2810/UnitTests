@@ -16,7 +16,7 @@ public class GetNotification {
     public static GetNotificationResp getInfoFromServer(String token, String index, String count) throws IOException {
         URL url = new URL(Constant.Get_Notification + "?token=" + token + "&index=" + index + "&count=" + count);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("POST");
+        connection.setRequestMethod("GET");
         connection.setDoOutput(true);
         try {
             StringBuilder content;

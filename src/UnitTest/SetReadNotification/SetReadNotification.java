@@ -14,8 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class SetReadNotification {
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args) throws IOException {
             case1();
 //            case2();
 //            case3();
@@ -23,10 +22,7 @@ public class SetReadNotification {
 //            case5();
 //            case6();
 //            case7();
-        }
-        catch (Exception e) {
-            System.out.println("Can not run");
-        }
+
     }
     public static SetReadNotificationResp getInfoFromServer(String token, String notification_id) throws IOException {
         URL url = new URL(Constant.Set_Read_Notification + "?token=" + token + "&notification_id=" + notification_id);
@@ -54,10 +50,12 @@ public class SetReadNotification {
     }
     public static void case1() throws IOException {
         System.out.println("Case 1: Success");
-        LoginResp loginResp = LogIn.getInfoFromServer("0583776786", "123456");
+        LoginResp loginResp = LogIn.getInfoFromServer("0968823005", "abcdef");
         String token = loginResp.data.token;
-        GetNotificationResp getNotificationResp = GetNotification.getInfoFromServer(token, "20", "1");
+        System.out.println("Notification:");
+        GetNotificationResp getNotificationResp = GetNotification.getInfoFromServer(token, "0", "1");
         String notification_id = getNotificationResp.data.notification_id;
+
         SetReadNotificationResp setReadNotificationResp = getInfoFromServer(token, notification_id);
         try {
             assert "1000".equals(setReadNotificationResp.code) : "Fail";
